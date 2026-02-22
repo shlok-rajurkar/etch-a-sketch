@@ -1,4 +1,4 @@
-function createResponsiveGrid(gridSize) {
+function createGrid(gridSize) {
     const gridContainer = document.getElementById("grid-container");
     for (let i = 0; i < gridSize; i++) {
         let gridRow = document.createElement("div");
@@ -11,16 +11,42 @@ function createResponsiveGrid(gridSize) {
         gridContainer.appendChild(gridRow);
     }
 
+
+}
+
+function addBinaryBlackColoring() {
+    const gridContainer = document.getElementById("grid-container");
+    gridContainer.addEventListener("mouseover", (event) => {
+    let target = event.target;
+    if (target.classList.contains("grid-square")) {
+        target.classList.add("traversed");
+    }
+})
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function addRainbowColoring() {
+    const gridContainer = document.getElementById("grid-container");
     gridContainer.addEventListener("mouseover", (event) => {
         let target = event.target;
         if (target.classList.contains("grid-square")) {
-            target.classList.add("traversed");
+            target.style.backgroundColor = getRandomColor();
         }
     })
 }
 
 function main() {
-    createResponsiveGrid(16);
+    createGrid(16);
+    // addBinaryBlackColoring();
+    addRainbowColoring();
 
     const changeSizeButton = document.getElementById("change-grid-size");
 
@@ -37,7 +63,7 @@ function main() {
             gridContainer.firstChild.remove();
         }
 
-        createResponsiveGrid(newSize);
+        createGrid(newSize);
     })
 }
 

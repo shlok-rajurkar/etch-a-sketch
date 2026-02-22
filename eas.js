@@ -16,7 +16,6 @@ function createResponsiveGrid(gridSize) {
         if (target.classList.contains("grid-square")) {
             target.classList.add("traversed");
         }
-
     })
 }
 
@@ -26,7 +25,11 @@ function main() {
     const changeSizeButton = document.getElementById("change-grid-size");
 
     changeSizeButton.addEventListener("click", () => {
-        let newSize = prompt("Input new grid size.");
+        let newSize = prompt("Input new grid size between 0 and 100.");
+
+        if (newSize > 100 || newSize < 1) {
+            newSize = 100;
+        }
 
         const gridContainer = document.getElementById("grid-container");
 

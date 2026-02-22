@@ -1,8 +1,9 @@
-#grid-container {
+#grid {
     display: flex;
     flex-direction: column;
     width: 80vh;
     height: 80vh;
+    border: 1px black solid;
 }
 
 .grid-row {
@@ -13,9 +14,16 @@
 
 .grid-square {
     flex-grow: 1;
-    border: 1px solid black;
 }
 
 .traversed {
     background-color: black;
+}
+
+.traversed-rainbow {
+    /* border: 1px solid black; */
+}
+
+.grid-square.shadable {
+    opacity: 0;
 }

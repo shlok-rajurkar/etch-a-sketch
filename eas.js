@@ -1,4 +1,4 @@
-function main(gridSize) {
+function createResponsiveGrid(gridSize) {
     const gridContainer = document.getElementById("grid-container");
     for (let i = 0; i < gridSize; i++) {
         let gridRow = document.createElement("div");
@@ -13,8 +13,29 @@ function main(gridSize) {
 
     gridContainer.addEventListener("mouseover", (event) => {
         let target = event.target;
-        target.classList.add("traversed");
+        if (target.classList.contains("grid-square")) {
+            target.classList.add("traversed");
+        }
+
     })
 }
 
-main(16);
+function main() {
+    createResponsiveGrid(16);
+
+    const changeSizeButton = document.getElementById("change-grid-size");
+
+    changeSizeButton.addEventListener("click", () => {
+        let newSize = prompt("Input new grid size.");
+
+        const gridContainer = document.getElementById("grid-container");
+
+        while (gridContainer.firstChild) {
+            gridContainer.firstChild.remove();
+        }
+
+        createResponsiveGrid(newSize);
+    })
+}
+
+main()
